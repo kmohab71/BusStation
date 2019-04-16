@@ -1,6 +1,5 @@
 package GUI;
 
-import Malak_Khaled.Product;
 import Malak_Khaled.manger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,21 +16,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MangerWindow {
-    public TextField nameInput = new TextField();
-    public TableView<Object> table = new TableView<>();
-    public TextField priceInput = new TextField();
-    public TextField quantityInput = new TextField();
-
-    public MangerWindow(){}
-
-
-    public void MangerWindow(manger manger) {
-        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
+    public TableView<Product> table;
+    public TextField nameInput, priceInput, quantityInput;
+    public void MangerWindowz(manger manger) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("MANGER");
+        window.setTitle("MANGER PROFILE");
         window.setMinWidth(250.0D);
 
+        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -46,16 +39,16 @@ public class MangerWindow {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         //Name input
-        //TextField nameInput = new TextField();
+        nameInput = new TextField();
         nameInput.setPromptText("Name");
         nameInput.setMinWidth(100);
 
         //Price input
-        //TextField priceInput = new TextField();
+        priceInput = new TextField();
         priceInput.setPromptText("Price");
 
         //Quantity input
-        //TextField quantityInput = new TextField();
+        quantityInput = new TextField();
         quantityInput.setPromptText("Quantity");
 
         //Button
@@ -69,16 +62,17 @@ public class MangerWindow {
         hBox.setSpacing(10);
         hBox.getChildren().addAll(nameInput, priceInput, quantityInput, addButton, deleteButton);
 
-        //TableView<Object> table = new TableView<>();
-        //table.setItems(getProduct());
-       // table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
+        table = new TableView<>();
+        table.setItems(getProduct());
+        table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(table, hBox);
 
         Scene scene = new Scene(vBox);
+
         window.setScene(scene);
-        window.show();
+        window.showAndWait();
     }
 
     //Add button clicked
@@ -95,8 +89,7 @@ public class MangerWindow {
 
     //Delete button clicked
     public void deleteButtonClicked(){
-        ObservableList<Object> productSelected;
-        ObservableList<Object> allProducts;
+        ObservableList<Product> productSelected, allProducts;
         allProducts = table.getItems();
         productSelected = table.getSelectionModel().getSelectedItems();
 

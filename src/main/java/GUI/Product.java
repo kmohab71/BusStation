@@ -1,4 +1,4 @@
-package Malak_Khaled;
+package GUI;
 
 public class Product {
 
