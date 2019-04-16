@@ -27,7 +27,7 @@ public class Driver extends Employee {
         super.setUsername(Username);
     }
     public void setPassword(String Password){
-        super.setUsername(Password);
+        super.setPassword(Password);
     }
     public int getSalary(){ return super.getSalary(); }
     public String getName(){

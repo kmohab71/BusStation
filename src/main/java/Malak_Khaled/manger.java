@@ -48,7 +48,7 @@ public class manger extends Employee {
         super.setUsername(Username);
     }
     public void setPassword(String Password){
-        super.setUsername(Password);
+        super.setPassword(Password);
     }
     public String getName(){
         return super.getName();
