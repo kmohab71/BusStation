@@ -30,9 +30,9 @@ public class DriverWindow {
             }
 
 
-            Label driverName = new Label("NAME:");
-            Label driverWage = new Label("WAGE:");
-            Label driverDOB = new Label("DATE OF BIRTH:");
+            Label driverName = new Label("NAME: " + driver.getName());
+            Label driverWage = new Label("WAGE: " + driver.getSalary());
+            Label driverDOB = new Label("DATE OF BIRTH: ");
             VBox driverInfo = new VBox();
             driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, listView);
 
