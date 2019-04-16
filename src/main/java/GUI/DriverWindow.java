@@ -2,6 +2,7 @@ package GUI;
 import Malak_Khaled.Driver;
 import Malak_Khaled.Trip;
 import Malak_Khaled.verifyDriver;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
@@ -34,6 +35,10 @@ public class DriverWindow {
             Label driverDOB = new Label("DATE OF BIRTH:");
             VBox driverInfo = new VBox();
             driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, listView);
+
+            Scene no = new Scene(driverInfo);
+            window.setScene(no);
+            window.show();
         }
 
 

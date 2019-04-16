@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BUS_STATION" />
         <module name="PICKABOO" />
+        <module name="BUS_STATION" />
+        <module name="BusStation2" />
       </profile>
     </annotationProcessing>
   </component>
