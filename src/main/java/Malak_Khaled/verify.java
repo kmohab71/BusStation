@@ -36,7 +36,7 @@ public class verify {
                 if (manger!=null){
                 System.out.println("enta manger");
                 MangerWindow next3 = new MangerWindow();
-                next3.MangerWindow(manger);
+                next3.MangerWindowz(manger);
                 }
                 System.out.println("enta mesh manger");
                 break;
