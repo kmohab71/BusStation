@@ -7,18 +7,27 @@ import dev.morphia.Morphia;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.collections.*;
-import javafx.concurrent.*;
-import javafx.geometry.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.*;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
+
 
 /**
  * Example of displaying a splash page for a standalone JavaFX application
@@ -56,10 +65,10 @@ public class newgui extends Application {
         //manger can add driver and trips and delete trips
         Driver banana = elmer.addDriver( 3000,"banana", "ban", "ana");
         Driver NOUR = elmer.addDriver( 3000,"NOUR", "nonz", "baba");
-        trip[0]=elmer.addTrip("Mozambeek","Alexandria",false,1,30,0,800,"banana");
-        trip[1]=elmer.addTrip("Paris","Barcelona",false,2,30,1,600,"banana");
-        trip[2]=elmer.addTrip("italy","cuba",false,2,20,0,800,"banana");
-        trip[3]=elmer.addTrip("Istanbul","Beirut",false,2,20,0,800,"NOUR");
+        trip[0]=elmer.addTrip("Mozambeek","Alexandria",false,1,30,0,800,"banana",29,5,2019);
+        trip[1]=elmer.addTrip("Paris","Barcelona",false,2,30,1,600,"banana",2,3,2019);
+        trip[2]=elmer.addTrip("italy","cuba",false,2,20,0,800,"banana",13,7,2019);
+        trip[3]=elmer.addTrip("Istanbul","Beirut",false,2,20,0,800,"NOUR",20,9,2019);
         //trip[4]=elmer.addTrip("Mozambeek","Alexandria",false,22,true,800,"banana");
         //trip[5]=elmer.addTrip("Mozambeek","Alexandria",false,33,true,800,"banana");
         //user can reserve trips

@@ -116,7 +116,9 @@ public class book {
         submit.setOnAction((e) -> {
             //window.close();
             Date value = Date.valueOf(datePicker.getValue());
-            System.out.println(value);
+            System.out.println(value.toLocalDate().getDayOfMonth());
+            System.out.println(value.toLocalDate().getMonthValue());
+            System.out.println(value.toLocalDate().getYear());
             System.out.println(value.toString());
 
             String source =choiceBox.getValue();

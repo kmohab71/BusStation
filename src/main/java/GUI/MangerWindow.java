@@ -80,7 +80,7 @@ public class MangerWindow {
 
     //Add button clicked
     public void addButtonClicked(manger manger){
-         manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR");
+        manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",29,5,2019);
         table.getItems().add(new Product(sourceInput.getText(),destinationInput.getText(),Integer.parseInt(stopsInput.getText())));
         sourceInput.clear();
         destinationInput.clear();

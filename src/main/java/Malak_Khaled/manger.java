@@ -1,5 +1,6 @@
 package Malak_Khaled;
 
+import dev.morphia.query.Query;
 import org.junit.Assert;
 
 import java.util.List;
@@ -17,15 +18,15 @@ public class manger extends Employee {
         setPassword(Password);
     }
 
-    public Trip addTrip(String source, String des, boolean INTERNAL,int vehicleType,int NumPeopleLeft , int stopsNum, int price,String Drivername)
+    public Trip addTrip(String source, String des, boolean INTERNAL, int vehicleType, int NumPeopleLeft , int stopsNum, int price, String Drivername, int day, int month,int year)
     {
         List<Driver> driver = DB_config.datastore.find(Driver.class)
                 .filter("name =", Drivername)
                 .asList();
         Assert.assertEquals(1, driver.size());
         //System.out.println(driver.get(0).getId());
-         final Trip newtrip = new Trip(source, des,INTERNAL, stopsNum,price,vehicleType, NumPeopleLeft,driver.get(0).getId());
-         final Trip newtrip2 = new Trip(des,source,INTERNAL, stopsNum, price,vehicleType, NumPeopleLeft,driver.get(0).getId());
+         final Trip newtrip = new Trip(source, des,INTERNAL, stopsNum,price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
+         final Trip newtrip2 = new Trip(des,source,INTERNAL, stopsNum, price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
          DB_config.datastore.save(newtrip);
          DB_config.datastore.save(newtrip2);
          return newtrip;
@@ -68,14 +69,18 @@ public class manger extends Employee {
 
     public  List<Trip> ViewTrips()
     {
-        List<Trip> driver = DB_config.datastore.find(Trip.class).asList();
-        System.out.println(driver);
-        return driver;
+        List<Trip> Trips = DB_config.datastore.find(Trip.class).asList();
+        System.out.println(Trips);
+        return Trips;
     }
-    public void deleteTrip(String source ,String des)
+    public void deleteTrip(String source , String des)
     {
-        List<Trip> DeletedTrip =  DB_config.datastore.createQuery(Trip.class).field("source").equal(source).asList();
-        DB_config.datastore.delete(Trip.class ,DeletedTrip.get(0).getId());
+        Query<Trip> DeletedTrip =  DB_config.datastore.createQuery(Trip.class).field("source").equal(source);
+        List<Trip> DeletedTripList = DeletedTrip.field("des").equal(des).asList();
+        if (!DeletedTripList.isEmpty())
+        {
+            DB_config.datastore.delete(Trip.class ,DeletedTripList.get(0).getId());
+        }
     }
     //public void editTrip(Trip trip){}
 

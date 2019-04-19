@@ -3,8 +3,7 @@ package Malak_Khaled;
 import dev.morphia.annotations.Id;
 import org.bson.types.ObjectId;
 
-import java.sql.Date;
-
+import java.util.Date;
 public class Trip {
     @Id
     private ObjectId id;
@@ -25,7 +24,6 @@ public class Trip {
     public void setDate(Date date) {
         this.date = date;
     }
-
 
     public ObjectId getId() {
         return id;
@@ -105,7 +103,7 @@ public class Trip {
 
     public Trip(){}
 
-    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver,Date date) {
+    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver,int day,int month,int year) {
         this.source = source;
         this.des = des;
         this.INTERNAL = INTERNAL;
@@ -114,7 +112,7 @@ public class Trip {
         this.driver=driver;
         this.VehicleType=vehicleType;
         this.NumPeopleLeft=NumPeopleLeft;
-        this.date=date;
+        this.date= new Date(year,month,day);
     }
     public Trip(Trip t) {
         this.source = t.des;
@@ -125,5 +123,6 @@ public class Trip {
         this.driver=t.driver;
         this.StopsNum=t.StopsNum;
         this.VehicleType=t.VehicleType;
+        this.date=t.date;
     }
 }
