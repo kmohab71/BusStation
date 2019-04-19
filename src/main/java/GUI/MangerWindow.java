@@ -1,5 +1,6 @@
 package GUI;
 
+import Malak_Khaled.Trip;
 import Malak_Khaled.manger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class MangerWindow {
     private TableView<Product> table;
@@ -53,9 +56,9 @@ public class MangerWindow {
 
         //Button
         Button addButton = new Button("Add");
-        addButton.setOnAction(e -> addButtonClicked());
+        addButton.setOnAction(e -> addButtonClicked(manger));
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(e -> deleteButtonClicked());
+        deleteButton.setOnAction(e -> deleteButtonClicked(manger));
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
@@ -63,7 +66,7 @@ public class MangerWindow {
         hBox.getChildren().addAll(sourceInput, destinationInput, stopsInput, addButton, deleteButton);
 
         table = new TableView<>();
-        table.setItems(getProduct());
+        table.setItems(getProduct(manger));
         table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
         VBox vBox = new VBox();
@@ -76,8 +79,13 @@ public class MangerWindow {
     }
 
     //Add button clicked
-    public void addButtonClicked(){
-       /* Product product = new Product();
+    public void addButtonClicked(manger manger){
+         manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR");
+        table.getItems().add(new Product(sourceInput.getText(),destinationInput.getText(),Integer.parseInt(stopsInput.getText())));
+        sourceInput.clear();
+        destinationInput.clear();
+        stopsInput.clear();
+        /* Product product = new Product();
         product.setName(sourceInput.getText());
         product.setPrice(destinationInput.getText());
         product.setQuantity(Integer.parseInt(stopsInput.getText()));
@@ -90,22 +98,27 @@ public class MangerWindow {
     }
 
     //Delete button clicked
-    public void deleteButtonClicked(){
-        ObservableList<Product> productSelected, allProducts;
-        allProducts = table.getItems();
-        productSelected = table.getSelectionModel().getSelectedItems();
+    public void deleteButtonClicked(manger manger){
 
+        Product productSelected2;
+        ObservableList<Product> allProducts,productSelected;
+        allProducts = table.getItems();
+        productSelected2 = table.getSelectionModel().getSelectedItem();
+        manger.deleteTrip(productSelected2.getName(),productSelected2.getPrice());
+        productSelected = table.getSelectionModel().getSelectedItems();
         productSelected.forEach(allProducts::remove);
+
+
+
     }
 
     //Get all of the products
-    public ObservableList<Product> getProduct(){
+    public ObservableList<Product> getProduct(manger manger){
         ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("Laptop", "pp", 20));
-        products.add(new Product("Bouncy Ball", "pp", 198));
-        products.add(new Product("Toilet", "pp", 74));
-        products.add(new Product("The Notebook DVD", "pp", 12));
-        products.add(new Product("Corn", "tt", 856));
+        List<Trip> exxx = manger.ViewTrips();
+        for (int i =0; i<exxx.size();i++)
+            products.add(new Product(exxx.get(i).getSource(), exxx.get(i).getDes(), exxx.get(i).getStopsNum()));
+
         return products;
     }
 

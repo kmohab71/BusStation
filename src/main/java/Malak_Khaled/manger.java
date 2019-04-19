@@ -72,6 +72,11 @@ public class manger extends Employee {
         System.out.println(driver);
         return driver;
     }
+    public void deleteTrip(String source ,String des)
+    {
+        List<Trip> DeletedTrip =  DB_config.datastore.createQuery(Trip.class).field("source").equal(source).asList();
+        DB_config.datastore.delete(Trip.class ,DeletedTrip.get(0).getId());
+    }
     //public void editTrip(Trip trip){}
 
 }

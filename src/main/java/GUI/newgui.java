@@ -55,10 +55,11 @@ public class newgui extends Application {
         Trip trip[] = new Trip[9];
         //manger can add driver and trips and delete trips
         Driver banana = elmer.addDriver( 3000,"banana", "ban", "ana");
+        Driver NOUR = elmer.addDriver( 3000,"NOUR", "nonz", "baba");
         trip[0]=elmer.addTrip("Mozambeek","Alexandria",false,1,30,0,800,"banana");
         trip[1]=elmer.addTrip("Paris","Barcelona",false,2,30,1,600,"banana");
         trip[2]=elmer.addTrip("italy","cuba",false,2,20,0,800,"banana");
-        //trip[3]=elmer.addTrip("Istanbul","Beirut",false,2,true,600,"banana");
+        trip[3]=elmer.addTrip("Istanbul","Beirut",false,2,20,0,800,"NOUR");
         //trip[4]=elmer.addTrip("Mozambeek","Alexandria",false,22,true,800,"banana");
         //trip[5]=elmer.addTrip("Mozambeek","Alexandria",false,33,true,800,"banana");
         //user can reserve trips
