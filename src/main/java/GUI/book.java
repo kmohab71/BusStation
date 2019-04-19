@@ -4,16 +4,14 @@ import Malak_Khaled.Trip;
 import Malak_Khaled.User;
 import dev.morphia.query.Query;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.util.List;
 
 public class book {
@@ -110,11 +108,17 @@ public class book {
             nextt.userWindow(user);
         });
 
+        DatePicker datePicker = new DatePicker();
+
 
 
         Button submit = new Button("SUBMIT");
         submit.setOnAction((e) -> {
             //window.close();
+            Date value = Date.valueOf(datePicker.getValue());
+            System.out.println(value);
+            System.out.println(value.toString());
+
             String source =choiceBox.getValue();
             String destination = choiceBox2.getValue();
 
@@ -135,7 +139,7 @@ public class book {
 
 
         VBox first = new VBox();
-        first.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,submit,cancel);
+        first.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,datePicker,submit,cancel);
         Scene firstpagee = new Scene(first, 500.0D, 200.0D, Color.AQUAMARINE);
         window.setTitle("BUS STATION");
         window.setScene(firstpagee);

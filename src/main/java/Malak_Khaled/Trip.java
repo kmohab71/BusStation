@@ -3,6 +3,8 @@ package Malak_Khaled;
 import dev.morphia.annotations.Id;
 import org.bson.types.ObjectId;
 
+import java.sql.Date;
+
 public class Trip {
     @Id
     private ObjectId id;
@@ -14,6 +16,15 @@ public class Trip {
     private int VehicleType;
     private int NumPeopleLeft;
     private ObjectId driver;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
 
     public ObjectId getId() {
