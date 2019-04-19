@@ -1,11 +1,16 @@
 package GUI;
 import Malak_Khaled.Driver;
 import Malak_Khaled.Trip;
+import Malak_Khaled.User;
 import Malak_Khaled.verifyDriver;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -18,25 +23,39 @@ public class DriverWindow {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("WELCOME TO YOUR ACCOUNT");
         window.setMinWidth(250.0D);
+
         List<Trip> s = verifyDriver.getDrivertrips(driver);
 
-        ListView listView = new ListView();
-            for (int i = 0; i < s.size(); i++) {
-                String me = s.get(i).getSource();
-                String me1 = s.get(i).getDes();
-                int me3 = s.get(i).getStopsNum();
-                String temp = "FROM:  " + me + "  TO:  " + me1 + " " + me3;
-                listView.getItems().add(temp);
-            }
+        TableView tableView = new TableView();
+
+        TableColumn<String, Trip> column1 = new TableColumn<>("Source");
+        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<String, Trip> column2 = new TableColumn<>("Destination");
+        column2.setCellValueFactory(new PropertyValueFactory<>("Username"));
+
+        TableColumn<String, Trip> column3 = new TableColumn<>("Date");
+        //column2.setCellValueFactory(new PropertyValueFactory<>("Username"));
+
+
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+        tableView.getColumns().add(column3);
+
+        for (int i = 0; i< s.size(); i++)
+            tableView.getItems().add(new User(s.get(i).getSource(),s.get(i).getDes(),"99"));
+            //tableView.getItems().add(new User(user.getReserved().get((Integer) i).getTrip().getSource(), user.getReserved().get((Integer) i).getTrip().getDes(),"99"));
+
 
 
             Label driverName = new Label("NAME: " + driver.getName());
             Label driverWage = new Label("WAGE: " + driver.getSalary());
             Label driverDOB = new Label("DATE OF BIRTH: ");
             VBox driverInfo = new VBox();
-            driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, listView);
+            driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, tableView);
 
-            Scene no = new Scene(driverInfo);
+            Scene no = new Scene(driverInfo,500,700, Color.CHOCOLATE);
             window.setScene(no);
             window.show();
         }

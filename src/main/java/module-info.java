@@ -7,6 +7,8 @@ module Malak_Khaled {
     requires core;
     requires junit;
     requires java.sql;
+    requires javafx.graphics;
+    requires java.logging;
     opens Malak_Khaled;
     opens GUI;
 }

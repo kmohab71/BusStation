@@ -2,6 +2,7 @@ package GUI;
 
 import Malak_Khaled.Trip;
 import Malak_Khaled.User;
+import Malak_Khaled.verify;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,38 +17,8 @@ import java.util.List;
 public class viewTripsChose {
     public viewTripsChose(){}
 
-    public static void viewTripsChose(User user){
-        //lessa
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("CHOOSE TRIPS");
-        window.setMinWidth(250.0D);
-        ListView listView = new ListView();
 
-        for (int i = 0; i< user.getReserved().size(); i++)
-            listView.getItems().add(user.getReserved().get(i).getTrip().getDes());
-
-        Button button = new Button("Read Selected Value");
-
-        button.setOnAction(event -> {
-
-            ObservableList selectedIndices = listView.getSelectionModel().getSelectedIndices();
-
-            for(Object o : selectedIndices){
-                System.out.println("o = " + o + " (" + o.getClass() + ")");
-            }
-        });
-
-
-        VBox vBox = new VBox(listView, button);
-        vBox.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(vBox, 300, 120);
-        window.setScene(scene);
-        window.showAndWait();
-
-    }
-    public static void viewTripsChose(User user, List<Trip> buyTripList, Boolean isoneway, Boolean isecon){
+    public void viewTripsChose(User user, List<Trip> buyTripList, Boolean isoneway, Boolean isecon){
 
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -74,7 +45,13 @@ public class viewTripsChose {
                 int no = buyTripList.get((Integer) o).getStopsNum();
                 System.out.println(no);
                 // prints the right info ->>> of the selected trip
+                //window.close();
                 user.addTriptoUser(buyTripList.get(0),!isoneway,!isecon);
+
+                window.close();
+
+                //userWindow nexttt = new userWindow();
+                //nexttt.userWindow(user);
 
             }
         });

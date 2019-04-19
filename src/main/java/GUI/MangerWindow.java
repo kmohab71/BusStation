@@ -16,40 +16,40 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MangerWindow {
-    public TableView<Product> table;
-    public TextField nameInput, priceInput, quantityInput;
+    private TableView<Product> table;
+    public TextField sourceInput, destinationInput, stopsInput;
     public void MangerWindowz(manger manger) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("MANGER PROFILE");
         window.setMinWidth(250.0D);
 
-        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
+        TableColumn<Product, String> nameColumn = new TableColumn<>("SOURCE");
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         //Price column
-        TableColumn<Product, Double> priceColumn = new TableColumn<>("Price");
-        priceColumn.setMinWidth(100);
+        TableColumn<Product, Double> priceColumn = new TableColumn<>("DESTINATION");
+        priceColumn.setMinWidth(200);
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         //Quantity column
-        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
-        quantityColumn.setMinWidth(100);
+        TableColumn<Product, String> quantityColumn = new TableColumn<>("NUMBER OF STOPS");
+        quantityColumn.setMinWidth(200);
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         //Name input
-        nameInput = new TextField();
-        nameInput.setPromptText("Name");
-        nameInput.setMinWidth(100);
+        sourceInput = new TextField();
+        sourceInput.setPromptText("SOURCE");
+        sourceInput.setMinWidth(100);
 
         //Price input
-        priceInput = new TextField();
-        priceInput.setPromptText("Price");
+        destinationInput = new TextField();
+        destinationInput.setPromptText("DESTINATION");
 
         //Quantity input
-        quantityInput = new TextField();
-        quantityInput.setPromptText("Quantity");
+        stopsInput = new TextField();
+        stopsInput.setPromptText("Quantity");
 
         //Button
         Button addButton = new Button("Add");
@@ -60,7 +60,7 @@ public class MangerWindow {
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(nameInput, priceInput, quantityInput, addButton, deleteButton);
+        hBox.getChildren().addAll(sourceInput, destinationInput, stopsInput, addButton, deleteButton);
 
         table = new TableView<>();
         table.setItems(getProduct());
@@ -77,14 +77,16 @@ public class MangerWindow {
 
     //Add button clicked
     public void addButtonClicked(){
-        Product product = new Product();
-        product.setName(nameInput.getText());
-        product.setPrice(Double.parseDouble(priceInput.getText()));
-        product.setQuantity(Integer.parseInt(quantityInput.getText()));
+       /* Product product = new Product();
+        product.setName(sourceInput.getText());
+        product.setPrice(destinationInput.getText());
+        product.setQuantity(Integer.parseInt(stopsInput.getText()));
         table.getItems().add(product);
-        nameInput.clear();
-        priceInput.clear();
-        quantityInput.clear();
+        sourceInput.clear();
+        destinationInput.clear();
+        stopsInput.clear();
+
+        */
     }
 
     //Delete button clicked
@@ -99,11 +101,11 @@ public class MangerWindow {
     //Get all of the products
     public ObservableList<Product> getProduct(){
         ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("Laptop", 859.00, 20));
-        products.add(new Product("Bouncy Ball", 2.49, 198));
-        products.add(new Product("Toilet", 99.00, 74));
-        products.add(new Product("The Notebook DVD", 19.99, 12));
-        products.add(new Product("Corn", 1.49, 856));
+        products.add(new Product("Laptop", "pp", 20));
+        products.add(new Product("Bouncy Ball", "pp", 198));
+        products.add(new Product("Toilet", "pp", 74));
+        products.add(new Product("The Notebook DVD", "pp", 12));
+        products.add(new Product("Corn", "tt", 856));
         return products;
     }
 

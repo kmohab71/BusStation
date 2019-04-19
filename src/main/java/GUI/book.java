@@ -10,6 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -91,8 +92,8 @@ public class book {
 
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         ChoiceBox<String> choiceBox2 = new ChoiceBox<>();
-        choiceBox.getItems().add("SOURCE");choiceBox2.getItems().add("DEStination");
-        choiceBox.setValue("SOURCE");choiceBox2.setValue("DEStination");
+        choiceBox.getItems().add("SOURCE");choiceBox2.getItems().add("DESTINATION");
+        choiceBox.setValue("SOURCE");choiceBox2.setValue("DESTINATION");
 
         Query<Trip> tripsQueryList =  DB_config.datastore.createQuery(Trip.class);
         List<Trip> tripList = tripsQueryList.asList();
@@ -102,7 +103,12 @@ public class book {
             choiceBox2.getItems().add(tripList.get(i).getDes());
         }
 
-
+        Button cancel = new Button("CANCEL");
+        cancel.setOnAction(e -> {
+            window.close();
+            userWindow nextt = new userWindow();
+            nextt.userWindow(user);
+        });
 
 
 
@@ -112,38 +118,14 @@ public class book {
             String source =choiceBox.getValue();
             String destination = choiceBox2.getValue();
 
-            //tripsQueryList22.filter(destination,"des");
-            //List<Trip> tripList22 = tripsQueryList22.asList();
-            //int x =tripList22.size();
-            //System.out.println(x);
-
-
             Query<Trip> tripsQueryList22 =  DB_config.datastore.createQuery(Trip.class).field("source").equal(source).field("des").equal(destination);
 
             List<Trip> x = tripsQueryList22.asList();
             viewTripsChose me = new viewTripsChose();
+            window.close();
             me.viewTripsChose(user,x,getIsOneWay(),getIsEcon());
-/*
-            for(int i=0;i<x.size();i++)
-                {
-                System.out.println(i+1+" "+x.get(i).source+" "+x.get(i).des+" "+x.get(i).price);
-                }
-            if (x.size()>=1)
-                {
-                verifyUser.user1.addTriptoUser(x.get(0),!getIsOneWay(),!getIsEcon());
-                }
-
- */
 
 
-
-
-
-            System.out.println(" is it internal" + getIsInternal() );
-            System.out.println(" is it one way " + getIsOneWay() );
-            System.out.println(" is it Economy " + getIsEcon() );
-            //viewTripsChose yaraztripz = new viewTripsChose();
-            //yaraztripz.viewTripsChose(temp);
 
         });
 
@@ -153,8 +135,8 @@ public class book {
 
 
         VBox first = new VBox();
-        first.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,submit);
-        Scene firstpagee = new Scene(first, 500.0D, 200.0D);
+        first.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,submit,cancel);
+        Scene firstpagee = new Scene(first, 500.0D, 200.0D, Color.AQUAMARINE);
         window.setTitle("BUS STATION");
         window.setScene(firstpagee);
         window.show();

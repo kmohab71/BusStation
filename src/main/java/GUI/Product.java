@@ -2,44 +2,44 @@ package GUI;
 
 public class Product {
 
-    private String name;
-    private double price;
-    private int quantity;
+    private String source;
+    private String destination;
+    private int numberOfStops;
 
     public Product(){
-        this.name = "";
-        this.price = 0;
-        this.quantity = 0;
+        this.source = "";
+        this.destination = "";
+        this.numberOfStops = 0;
     }
 
-    public Product(String name, double price, int quantity){
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    public Product(String source, String destination, int numberOfStops){
+        this.source = source;
+        this.destination = destination;
+        this.numberOfStops = numberOfStops;
     }
 
     public String getName() {
-        return name;
+        return source;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.source = name;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        return destination;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.destination = price;
     }
 
     public int getQuantity() {
-        return quantity;
+        return numberOfStops;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.numberOfStops = quantity;
     }
 
 }
