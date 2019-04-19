@@ -105,7 +105,7 @@ public class Trip {
 
     public Trip(){}
 
-    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver) {
+    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver,Date date) {
         this.source = source;
         this.des = des;
         this.INTERNAL = INTERNAL;
@@ -114,6 +114,7 @@ public class Trip {
         this.driver=driver;
         this.VehicleType=vehicleType;
         this.NumPeopleLeft=NumPeopleLeft;
+        this.date=date;
     }
     public Trip(Trip t) {
         this.source = t.des;
