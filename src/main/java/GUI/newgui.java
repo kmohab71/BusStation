@@ -76,6 +76,7 @@ public class newgui extends Application {
         user1.addTriptoUser(trip[0],true,true);
         user2.addTriptoUser(trip[2],true,true);
         user1.addTriptoUser(trip[1],true,true);
+        user1.DeleteTrip(trip[0].getId());
         //user2.addTriptoUser(trip[3],true,true);
         System.out.println(elmer.ViewTrips());
         //banana.ViewTripDriver(banana,datastore);

@@ -6,6 +6,7 @@ import dev.morphia.query.UpdateOperations;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class User extends Person{
@@ -44,16 +45,23 @@ public class User extends Person{
         if(twoWay==true)
         {
             Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
+            Query<Trip> TripQuery =  DB_config.datastore.createQuery(Trip.class).field("source").equal(trip.getDes());
+            List<Trip> TripList = TripQuery.field("des").equal(trip.getSource()).asList();
+            if (!TripList.isEmpty())
+            {
+                Trip trip2 = TripList.get(0);
+                ReservedTikets reserve1=new ReservedTikets(trip2, twoWay,  FirstClass);
+                reserve1.calculatePrice();
+                UpdateOperations<User> ops1 =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve1);
+                DB_config.datastore.update(updateQuery,ops1);
 
-            Trip trip2= new Trip(trip);
+            }
+
             ReservedTikets reserve=new ReservedTikets(trip, twoWay,  FirstClass);
-            ReservedTikets reserve1=new ReservedTikets(trip2, twoWay,  FirstClass);
             reserve.calculatePrice();
-            reserve1.calculatePrice();
             UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
             DB_config.datastore.update(updateQuery,ops);
-            UpdateOperations<User> ops1 =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve1);
-            DB_config.datastore.update(updateQuery,ops1);
+
         }
         else
         {
@@ -84,6 +92,7 @@ public class User extends Person{
     public String getPassword(){
         return super.getPassword();
     }
+
     public User getinfo()
     {
         Query<User> Query =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
@@ -91,6 +100,22 @@ public class User extends Person{
 
     }
 
+    public void DeleteTrip(ObjectId id)
+    {
+        final User UsertoUpdate = DB_config.datastore.find(User.class).disableValidation().field("Id").equal(this.getId()).get();
+        for (int i =0;i<UsertoUpdate.reserved.size();i++)
+        {
+            System.out.println("TripID"+UsertoUpdate.reserved.get(i).getTrip().getId()+"  id   "+id);
+            if (UsertoUpdate.reserved.get(i).getTrip().getId().equals(id))
+            {
+                System.out.println("Trips"+UsertoUpdate.reserved.get(i));
+                UsertoUpdate.reserved.remove(i);
+            }
+        }
+        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).removeAll("reserved",reserved).addToSet("reserved",UsertoUpdate.reserved);
+        System.out.println(UsertoUpdate.reserved.size());
+        DB_config.datastore.update(UsertoUpdate, updateOperations);
 
+    }
 
 }

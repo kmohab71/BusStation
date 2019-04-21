@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7830e2d6-128c-4be6-939c-d0f545e22db0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/MangerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/MangerWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GUI/newgui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/newgui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Malak_Khaled/manger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Malak_Khaled/manger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/MangerWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/MangerWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Malak_Khaled/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Malak_Khaled/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Malak_Khaled/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Malak_Khaled/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Malak_Khaled/manger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Malak_Khaled/manger.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,14 +25,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-166">
-              <caret line="43" column="24" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="24" />
+            <state relative-caret-position="1880">
+              <caret line="114" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Employee.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Vehicle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -55,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="114" column="44" lean-forward="true" selection-start-line="114" selection-start-column="44" selection-end-line="114" selection-end-column="44" />
+            <state relative-caret-position="363">
+              <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#436#437#0" expanded="true" />
@@ -73,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/newgui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+            <state relative-caret-position="310">
+              <caret line="80" column="46" lean-forward="true" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,28 +122,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/reflect/AccessibleObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="279" selection-start-line="279" selection-end-line="279" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/reflect/Field.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="169" selection-start-line="169" selection-end-line="169" />
-              <folding>
-                <element signature="e#5614#5615#0" expanded="true" />
-                <element signature="e#5666#5667#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/dev/morphia/morphia/core/1.4.1/core-1.4.1.jar!/dev/morphia/mapping/MappedClass.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="236">
@@ -137,11 +130,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/manger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+            <state relative-caret-position="292">
+              <caret line="82" column="9" lean-forward="true" selection-start-line="77" selection-start-column="8" selection-end-line="82" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1403#1404#0" expanded="true" />
@@ -194,19 +187,19 @@
         <option value="$PROJECT_DIR$/src/main/java/GUI/Alert.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/Product.java" />
         <option value="$PROJECT_DIR$/src/main/java/Malak_Khaled/Vehicle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/MangerWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GUI/newgui.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/book.java" />
         <option value="$PROJECT_DIR$/src/main/java/Malak_Khaled/manger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GUI/newgui.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="143" />
-    <option name="y" value="22" />
-    <option name="width" value="1297" />
-    <option name="height" value="822" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -265,7 +258,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555713687097" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555761899963" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/GUI" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -353,15 +346,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.16117217" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16117217" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.37326202" />
@@ -370,7 +362,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Version Control" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.37326202" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.03208556" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -559,13 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Person.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -574,13 +559,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/ReservedTikets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Vehicle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -618,16 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/reflect/AccessibleObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -650,32 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="392" selection-start-line="392" selection-end-line="392" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="114" column="44" lean-forward="true" selection-start-line="114" selection-start-column="44" selection-end-line="114" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#436#437#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="e#590#591#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/newgui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,10 +651,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/newgui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="80" column="46" lean-forward="true" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Vehicle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/Trip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/manger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+        <state relative-caret-position="292">
+          <caret line="82" column="9" lean-forward="true" selection-start-line="77" selection-start-column="8" selection-end-line="82" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1403#1404#0" expanded="true" />
@@ -729,6 +711,16 @@
             <element signature="e#1835#1836#0" expanded="true" />
             <element signature="e#1868#1869#0" expanded="true" />
             <element signature="e#1910#1911#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Malak_Khaled/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1880">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
