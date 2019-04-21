@@ -1,9 +1,7 @@
 package GUI;
 
-import Malak_Khaled.*;
-import com.mongodb.MongoClient;
-import dev.morphia.Datastore;
-import dev.morphia.Morphia;
+import Malak_Khaled.DB_config;
+import Malak_Khaled.verify;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -45,43 +43,8 @@ public class newgui extends Application {
     private int choice = 0;
 
     public static void main(String[] args) throws Exception {
-        final Morphia morphia = new Morphia();
 
-        // tell morphia where to find your classes
-        // can be called multiple times with different packages or classes
-        morphia.mapPackage("Bus Station");
-
-        // create the Datastore connecting to the database running on the default port on the local host
-        final Datastore datastore = morphia.createDatastore(new MongoClient(), "Bus_station_collection");
-        datastore.getDB().dropDatabase();
-        datastore.ensureIndexes();
-        new DB_config(datastore);
-        //creator is the class responsible for creating users and mangers
-        final Creator creator=new Creator();
-        final User user1= creator.createUser("dsfaaass","abc","123");
-        final User user2= creator.createUser("MALAK","","");
-        final manger elmer =creator.createManger("Elmer Fudd", 50000, "elmer","1234");
-        Trip trip[] = new Trip[9];
-        //manger can add driver and trips and delete trips
-        Driver banana = elmer.addDriver( 3000,"banana", "ban", "ana");
-        Driver NOUR = elmer.addDriver( 3000,"NOUR", "nonz", "baba");
-        trip[0]=elmer.addTrip("Mozambeek","Alexandria",false,1,30,0,800,"banana",29,5,2019);
-        trip[1]=elmer.addTrip("Paris","Barcelona",false,2,30,1,600,"banana",2,3,2019);
-        trip[2]=elmer.addTrip("italy","cuba",false,2,20,0,800,"banana",13,7,2019);
-        trip[3]=elmer.addTrip("Istanbul","Beirut",false,2,20,0,800,"NOUR",20,9,2019);
-        //trip[4]=elmer.addTrip("Mozambeek","Alexandria",false,22,true,800,"banana");
-        //trip[5]=elmer.addTrip("Mozambeek","Alexandria",false,33,true,800,"banana");
-        //user can reserve trips
-        System.out.println("driver list : "+banana.ViewTripDriver().get(0).getSource());
-        user1.addTriptoUser(trip[0],true,true);
-        user2.addTriptoUser(trip[2],true,true);
-        user1.addTriptoUser(trip[1],true,true);
-        user1.DeleteTrip(trip[0].getId());
-        //user2.addTriptoUser(trip[3],true,true);
-        System.out.println(elmer.ViewTrips());
-        //banana.ViewTripDriver(banana,datastore);
-        System.out.println(user1.getinfo().getReserved());
-        //elmer.deleteTrip(datastore,trip[0]);
+        new DB_config();
         launch(args);
 
     }

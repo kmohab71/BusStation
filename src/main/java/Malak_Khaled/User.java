@@ -112,9 +112,9 @@ public class User extends Person{
                 UsertoUpdate.reserved.remove(i);
             }
         }
-        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).removeAll("reserved",reserved).addToSet("reserved",UsertoUpdate.reserved);
+//        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).removeAll("reserved",reserved).addToSet("reserved",UsertoUpdate.reserved);
         System.out.println(UsertoUpdate.reserved.size());
-        DB_config.datastore.update(UsertoUpdate, updateOperations);
+       // DB_config.datastore.update(UsertoUpdate, updateOperations);
 
     }
 
