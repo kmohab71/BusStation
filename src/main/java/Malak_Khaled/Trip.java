@@ -137,6 +137,9 @@ public class Trip {
         return NumPeopleLeft;
     }
     public void decrementNumPeopleLeft() {
+        Query<Trip> DecTrips =  DB_config.datastore.createQuery(Trip.class).field("id").equal(this.id);
+        UpdateOperations<Trip> ops =  DB_config.datastore.createUpdateOperations(Trip.class).dec("NumPeopleLeft");
+        DB_config.datastore.update(DecTrips,ops);
         NumPeopleLeft--;
     }
     public void setNumPeopleLeft(int numPeopleLeft) {

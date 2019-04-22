@@ -1,5 +1,6 @@
 package Malak_Khaled;
 
+import com.mongodb.BasicDBObject;
 import dev.morphia.annotations.Id;
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
@@ -112,7 +113,7 @@ public class User extends Person{
         System.out.println(reservedtoDel);
         if (reservedtoDel != null)
         {
-            UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved",reservedtoDel);
+            UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved",new BasicDBObject("trip", new BasicDBObject("id", trip.getId())));
             System.out.println(updateOperations);
             DB_config.datastore.update(UsertoUpdate, updateOperations);
         }
