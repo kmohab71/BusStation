@@ -3,6 +3,7 @@ import Malak_Khaled.DB_config;
 import Malak_Khaled.Trip;
 import Malak_Khaled.User;
 import dev.morphia.query.Query;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -15,41 +16,38 @@ import java.sql.Date;
 import java.util.List;
 
 public class book {
-    public static Boolean isInternal;
-    public static Boolean isOneWay;
-    public static Boolean isEcon;
+    private   Boolean isInternal;
+    private   Boolean isOneWay;
+    private   Boolean isEcon;
 
-    public book(){}
-    public static Boolean getIsEcon() {
-        return isEcon;
-    }
-
-    public static void setIsEcon(Boolean isEcon) {
-        book.isEcon = isEcon;
-    }
-
-
-
-    public static Boolean getIsInternal() {
+    public Boolean getInternal() {
         return isInternal;
     }
 
-    public static void setIsInternal(Boolean isInternal) {
-        book.isInternal = isInternal;
+    public void setInternal(Boolean internal) {
+        isInternal = internal;
     }
 
-    public static Boolean getIsOneWay() {
+    public Boolean getOneWay() {
         return isOneWay;
     }
 
-    public static void setIsOneWay(Boolean isOneWay) {
-        book.isOneWay = isOneWay;
+    public void setOneWay(Boolean oneWay) {
+        isOneWay = oneWay;
     }
-    private static void getChoice(ChoiceBox<String> choiceBox){
-        String food = choiceBox.getValue();
-        System.out.println(food);
+
+    public Boolean getEcon() {
+        return isEcon;
     }
-    public static void booking(User user){
+
+    public void setEcon(Boolean econ) {
+        isEcon = econ;
+    }
+
+    public book(){}
+
+
+    public  void booking(User user){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("BOOK YOUR TRIP");
@@ -57,26 +55,26 @@ public class book {
 
         ToggleGroup radioGroup = new ToggleGroup();
         RadioButton internal = new RadioButton("INTERNAL    ");
-        internal.setOnAction((e) -> {setIsInternal(true); });
+        internal.setOnAction((e) -> {setInternal(true); });
         RadioButton external = new RadioButton("EXTERNAL    ");
-        external.setOnAction((e) ->{setIsInternal(false) ;});
+        external.setOnAction((e) ->{setInternal(false) ;});
 
         internal.setToggleGroup(radioGroup);
         external.setToggleGroup(radioGroup);
 
         ToggleGroup radioGroup2 = new ToggleGroup();
         RadioButton oneway = new RadioButton("ONE WAY    ");
-        oneway.setOnAction((e) -> {setIsOneWay(true); });
+        oneway.setOnAction((e) -> {setOneWay(true); });
         RadioButton roundtrip = new RadioButton("ROUND TRIP    ");
-        roundtrip.setOnAction((e) ->{setIsOneWay(false) ;});
+        roundtrip.setOnAction((e) ->{setOneWay(false) ;});
         oneway.setToggleGroup(radioGroup2);
         roundtrip.setToggleGroup(radioGroup2);
 
         ToggleGroup radioGroup3 = new ToggleGroup();
         RadioButton economy = new RadioButton("ECONOMY    ");
-        economy.setOnAction((e) -> {setIsEcon(true); });
+        economy.setOnAction((e) -> {setEcon(true); });
         RadioButton firstClass = new RadioButton("FIRST CLASS    ");
-        firstClass.setOnAction((e) ->{setIsEcon(false) ;});
+        firstClass.setOnAction((e) ->{setEcon(false) ;});
 
         economy.setToggleGroup(radioGroup3);
         firstClass.setToggleGroup(radioGroup3);
@@ -103,9 +101,11 @@ public class book {
 
         Button cancel = new Button("CANCEL");
         cancel.setOnAction(e -> {
-            window.close();
+            /*window.close();
             userWindow nextt = new userWindow();
             nextt.userWindow(user);
+
+             */
         });
 
         DatePicker datePicker = new DatePicker();
@@ -116,10 +116,7 @@ public class book {
         submit.setOnAction((e) -> {
             //window.close();
             Date value = Date.valueOf(datePicker.getValue());
-            System.out.println(value.toLocalDate().getDayOfMonth());
-            System.out.println(value.toLocalDate().getMonthValue());
-            System.out.println(value.toLocalDate().getYear());
-            System.out.println(value.toString());
+
 
             String source =choiceBox.getValue();
             String destination = choiceBox2.getValue();
@@ -127,9 +124,42 @@ public class book {
             Query<Trip> tripsQueryList22 =  DB_config.datastore.createQuery(Trip.class).field("source").equal(source).field("des").equal(destination);
 
             List<Trip> x = tripsQueryList22.asList();
-            viewTripsChose me = new viewTripsChose();
-            window.close();
-            me.viewTripsChose(user,x,getIsOneWay(),getIsEcon());
+
+
+
+            ListView listView = new ListView();
+
+            for (int i=0;i<x.size();i++)
+            {
+                String me2 =  x.get(i).getSource();
+                String me1 =  x.get(i).getDes();
+                int me3 = x.get(i).getStopsNum();
+                String temp = "FROM:  "+me2+"  TO:  "+me1+" "+ me3;
+                listView.getItems().add(temp);
+            }
+
+            Button button = new Button("BOOK THIS TRIP");
+
+            button.setOnAction(event -> {
+
+                ObservableList selectedIndices = listView.getSelectionModel().getSelectedIndices();
+                for(Object o : selectedIndices){
+
+                    int no = x.get((Integer) o).getStopsNum();
+                    System.out.println(no);
+
+                    user.addTriptoUser(x.get(0),!getOneWay(),!getEcon());
+
+                }
+
+                window.close();
+            });
+
+
+            VBox vBox = new VBox(listView, button);
+
+            Scene scene77 = new Scene(vBox, 300, 120);
+            window.setScene(scene77);
 
 
 
@@ -140,11 +170,11 @@ public class book {
 
 
 
-        VBox first = new VBox();
-        first.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,datePicker,submit,cancel);
-        Scene firstpagee = new Scene(first, 500.0D, 200.0D, Color.AQUAMARINE);
+        VBox first0 = new VBox();
+        first0.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,datePicker,submit,cancel);
+        Scene bookpage = new Scene(first0, 500.0D, 200.0D, Color.AQUAMARINE);
         window.setTitle("BUS STATION");
-        window.setScene(firstpagee);
+        window.setScene(bookpage);
         window.show();
 
 

@@ -1,9 +1,13 @@
 package Malak_Khaled;
 
 import dev.morphia.annotations.Id;
+import dev.morphia.query.Query;
+import dev.morphia.query.UpdateOperations;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.Date;
+
 public class Trip {
     @Id
     private ObjectId id;
@@ -16,6 +20,37 @@ public class Trip {
     private int NumPeopleLeft;
     private ObjectId driver;
     private Date date;
+    private ArrayList<User> reservers= new ArrayList<>();
+
+
+
+
+    public Trip(){}
+
+    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver,int day,int month,int year) {
+        this.source = source;
+        this.des = des;
+        this.INTERNAL = INTERNAL;
+        this.StopsNum = stopsNum;
+        this.price = price;
+        this.driver=driver;
+        this.VehicleType=vehicleType;
+        this.NumPeopleLeft=NumPeopleLeft;
+        this.date= new Date(year,month,day);
+    }
+    public Trip(Trip t) {
+        this.source = t.des;
+        this.des = t.source;
+        this.INTERNAL = t.INTERNAL;
+        this.StopsNum = t.StopsNum;
+        this.price = t.price;
+        this.driver=t.driver;
+        this.StopsNum=t.StopsNum;
+        this.VehicleType=t.VehicleType;
+        this.date=t.date;
+    }
+
+
 
     public Date getDate() {
         return date;
@@ -24,7 +59,22 @@ public class Trip {
     public void setDate(Date date) {
         this.date = date;
     }
+    public void pushToReservers(User user)
+    {
+        this.reservers.add(user);
+        System.out.println(reservers);
+        Query<Trip> updateQuery =  DB_config.datastore.createQuery(Trip.class);
+        UpdateOperations<Trip> ops1 =  DB_config.datastore.createUpdateOperations(Trip.class).addToSet("reservers",user);
+        DB_config.datastore.update(updateQuery,ops1);
 
+    }
+    public void deleteTripsFromUsers()
+    {
+        for(int i=0;i<reservers.size();i++)
+        {
+            reservers.get(i).DeleteTrip(this.getId());
+        }
+    }
     public ObjectId getId() {
         return id;
     }
@@ -101,28 +151,11 @@ public class Trip {
         this.driver = driver;
     }
 
-    public Trip(){}
-
-    public Trip(String source, String des, boolean INTERNAL, int stopsNum, int price, int vehicleType,int NumPeopleLeft , ObjectId driver,int day,int month,int year) {
-        this.source = source;
-        this.des = des;
-        this.INTERNAL = INTERNAL;
-        this.StopsNum = stopsNum;
-        this.price = price;
-        this.driver=driver;
-        this.VehicleType=vehicleType;
-        this.NumPeopleLeft=NumPeopleLeft;
-        this.date= new Date(year,month,day);
+    public ArrayList<User> getReservers() {
+        return reservers;
     }
-    public Trip(Trip t) {
-        this.source = t.des;
-        this.des = t.source;
-        this.INTERNAL = t.INTERNAL;
-        this.StopsNum = t.StopsNum;
-        this.price = t.price;
-        this.driver=t.driver;
-        this.StopsNum=t.StopsNum;
-        this.VehicleType=t.VehicleType;
-        this.date=t.date;
+
+    public void setReservers(ArrayList<User> reservers) {
+        this.reservers = reservers;
     }
 }

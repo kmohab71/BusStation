@@ -24,8 +24,9 @@ public class manger extends Employee {
                 .filter("name =", Drivername)
                 .asList();
         Assert.assertEquals(1, driver.size());
-        //System.out.println(driver.get(0).getId());
+        System.out.println(driver.get(0).getId());
          final Trip newtrip = new Trip(source, des,INTERNAL, stopsNum,price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
+         System.out.println(newtrip.toString());
          final Trip newtrip2 = new Trip(des,source,INTERNAL, stopsNum, price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
          DB_config.datastore.save(newtrip);
          DB_config.datastore.save(newtrip2);
@@ -79,6 +80,7 @@ public class manger extends Employee {
         List<Trip> DeletedTripList = DeletedTrip.field("des").equal(des).asList();
         if (!DeletedTripList.isEmpty())
         {
+            DeletedTripList.get(0).deleteTripsFromUsers();
             DB_config.datastore.delete(Trip.class ,DeletedTripList.get(0).getId());
         }
     }

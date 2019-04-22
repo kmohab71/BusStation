@@ -52,18 +52,23 @@ public class MangerWindow {
 
         //Quantity input
         stopsInput = new TextField();
-        stopsInput.setPromptText("Quantity");
+        stopsInput.setPromptText("STOPS");
 
         //Button
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> addButtonClicked(manger));
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(e -> deleteButtonClicked(manger));
+        Button out = new Button("Log Out");
+        out.setOnAction(e -> {
+            window.close();
+            createContent lol = new createContent(window);
+        });
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(sourceInput, destinationInput, stopsInput, addButton, deleteButton);
+        hBox.getChildren().addAll(sourceInput, destinationInput, stopsInput, addButton, deleteButton,out);
 
         table = new TableView<>();
         table.setItems(getProduct(manger));
@@ -80,7 +85,7 @@ public class MangerWindow {
 
     //Add button clicked
     public void addButtonClicked(manger manger){
-        manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",29,5,2019);
+         manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",4,12,2019);
         table.getItems().add(new Product(sourceInput.getText(),destinationInput.getText(),Integer.parseInt(stopsInput.getText())));
         sourceInput.clear();
         destinationInput.clear();

@@ -1,5 +1,6 @@
 package Malak_Khaled;
 
+import com.mongodb.BasicDBObject;
 import dev.morphia.annotations.Id;
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
@@ -13,7 +14,6 @@ public class User extends Person{
     private ArrayList<ReservedTikets> reserved= new ArrayList<ReservedTikets>();
     @Id
     private static ObjectId id;
-    //ReservedTikets reserved[]=new ReservedTikets[10];
 
     public User (){}
 
@@ -71,6 +71,7 @@ public class User extends Person{
             UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
             DB_config.datastore.update(updateQuery,ops);
         }
+            trip.pushToReservers(this);
             trip.decrementNumPeopleLeft();
         }else{}
     }
@@ -102,8 +103,8 @@ public class User extends Person{
 
     public void DeleteTrip(ObjectId id)
     {
-        final User UsertoUpdate = DB_config.datastore.find(User.class).disableValidation().field("Id").equal(this.getId()).get();
-        for (int i =0;i<UsertoUpdate.reserved.size();i++)
+        final User UsertoUpdate = DB_config.datastore.find(User.class).field("Id").equal(this.getId()).get();
+        /*for (int i =0;i<UsertoUpdate.reserved.size();i++)
         {
             System.out.println("TripID"+UsertoUpdate.reserved.get(i).getTrip().getId()+"  id   "+id);
             if (UsertoUpdate.reserved.get(i).getTrip().getId().equals(id))
@@ -111,10 +112,10 @@ public class User extends Person{
                 System.out.println("Trips"+UsertoUpdate.reserved.get(i));
                 UsertoUpdate.reserved.remove(i);
             }
-        }
-//        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).removeAll("reserved",reserved).addToSet("reserved",UsertoUpdate.reserved);
+        }*/
+        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved", new BasicDBObject("Id",id));
         System.out.println(UsertoUpdate.reserved.size());
-       // DB_config.datastore.update(UsertoUpdate, updateOperations);
+        DB_config.datastore.update(UsertoUpdate, updateOperations);
 
     }
 
