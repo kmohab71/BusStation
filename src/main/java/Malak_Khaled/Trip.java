@@ -63,7 +63,7 @@ public class Trip {
     {
         this.reservers.add(user);
         System.out.println(reservers);
-        Query<Trip> updateQuery =  DB_config.datastore.createQuery(Trip.class);
+        Query<Trip> updateQuery =  DB_config.datastore.createQuery(Trip.class).disableValidation().field("id").equal(this.getId());
         UpdateOperations<Trip> ops1 =  DB_config.datastore.createUpdateOperations(Trip.class).addToSet("reservers",user);
         DB_config.datastore.update(updateQuery,ops1);
 
@@ -72,7 +72,7 @@ public class Trip {
     {
         for(int i=0;i<reservers.size();i++)
         {
-            reservers.get(i).DeleteTrip(this.getId());
+            reservers.get(i).DeleteTrip(this);
         }
     }
     public ObjectId getId() {

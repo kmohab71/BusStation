@@ -1,6 +1,5 @@
 package Malak_Khaled;
 
-import com.mongodb.BasicDBObject;
 import dev.morphia.annotations.Id;
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
@@ -101,21 +100,22 @@ public class User extends Person{
 
     }
 
-    public void DeleteTrip(ObjectId id)
+    public void DeleteTrip(Trip trip)
     {
-        final User UsertoUpdate = DB_config.datastore.find(User.class).field("Id").equal(this.getId()).get();
-        /*for (int i =0;i<UsertoUpdate.reserved.size();i++)
+        final User UsertoUpdate = DB_config.datastore.find(User.class).disableValidation().field("id").equal(this.getId()).get();
+        System.out.println(UsertoUpdate);
+        ReservedTikets reservedtoDel=null;
+        //final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved", new BasicDBObject("id",id));
+        for(int i=0 ;i<this.getReserved().size();i++)
+            if(this.getReserved().get(i).getTrip().equals(trip))
+                reservedtoDel=this.getReserved().get(i);
+        System.out.println(reservedtoDel);
+        if (reservedtoDel != null)
         {
-            System.out.println("TripID"+UsertoUpdate.reserved.get(i).getTrip().getId()+"  id   "+id);
-            if (UsertoUpdate.reserved.get(i).getTrip().getId().equals(id))
-            {
-                System.out.println("Trips"+UsertoUpdate.reserved.get(i));
-                UsertoUpdate.reserved.remove(i);
-            }
-        }*/
-        final UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved", new BasicDBObject("Id",id));
-        System.out.println(UsertoUpdate.reserved.size());
-        DB_config.datastore.update(UsertoUpdate, updateOperations);
+            UpdateOperations<User> updateOperations = DB_config.datastore.createUpdateOperations(User.class).disableValidation().removeAll("reserved",reservedtoDel);
+            System.out.println(updateOperations);
+            DB_config.datastore.update(UsertoUpdate, updateOperations);
+        }
 
     }
 

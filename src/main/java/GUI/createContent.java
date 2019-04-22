@@ -3,22 +3,11 @@ package GUI;
 import Malak_Khaled.*;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -32,6 +21,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class createContent {
     private  final String APPLICATION_ICON2 ="https://www.malaysia-expressbus.com/wp-content/uploads/2013/09/aa.png";
@@ -181,6 +171,7 @@ public class createContent {
                         ObservableList selectedIndices = tableView.getSelectionModel().getSelectedIndices();
 
                         for(Object o : selectedIndices){
+                            getUser().DeleteTrip(getUser().getReserved().get((Integer) o).getTrip());
                             String no = getUser().getReserved().get((Integer) o).getTrip().getSource();
                             System.out.println(no);
 
