@@ -5,7 +5,6 @@ import Malak_Khaled.User;
 import Malak_Khaled.verifyDriver;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,7 +34,7 @@ public class DriverWindow {
         column2.setCellValueFactory(new PropertyValueFactory<>("Username"));
 
         TableColumn<String, Trip> column3 = new TableColumn<>("Date");
-        //column2.setCellValueFactory(new PropertyValueFactory<>("Username"));
+        column3.setCellValueFactory(new PropertyValueFactory<>("Password"));
 
 
 
@@ -44,7 +43,7 @@ public class DriverWindow {
         tableView.getColumns().add(column3);
 
         for (int i = 0; i< s.size(); i++)
-            tableView.getItems().add(new User(s.get(i).getSource(),s.get(i).getDes(),"99"));
+            tableView.getItems().add(new User(s.get(i).getSource(),s.get(i).getDes(),s.get(i).getDate().toString()));
             //tableView.getItems().add(new User(user.getReserved().get((Integer) i).getTrip().getSource(), user.getReserved().get((Integer) i).getTrip().getDes(),"99"));
 
 

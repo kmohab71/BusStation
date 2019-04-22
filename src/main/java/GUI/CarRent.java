@@ -3,13 +3,13 @@ package GUI;
 import Malak_Khaled.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.Date;
 
 public class CarRent {
     private final String car ="https://img.etimg.com/thumb/msid-65768633,width-643,imgsize-251384,resizemode-4/lamborghinispyder.jpg";
@@ -22,14 +22,19 @@ public class CarRent {
         Stage carWindow = new Stage();
         carWindow.initModality(Modality.APPLICATION_MODAL);
         carWindow.setTitle("RENT A CAR");
-        Button rent_the_car = new Button("RENT THIS CAR");
-        Button rent_the_car2 = new Button("RENT THIS CAR");
-        Button rent_the_car3 = new Button("RENT THIS CAR");
+
+
+
         ImageView car1view = new ImageView(car);
         car1view.setX(50);
         car1view.setY(25);
         car1view.setFitHeight(150);
         car1view.setFitWidth(250);
+        Button rent_the_car = new Button("RENT THIS CAR");
+        rent_the_car.setOnAction(event -> {
+            //Car one_car = new Car("pooh",new Date(12/1/1999),5);
+            user.addCartoUser("pooh",new Date(12/1/1999),5);
+        });
 
 
 
@@ -38,6 +43,11 @@ public class CarRent {
         car2view.setY(25);
         car2view.setFitHeight(150);
         car2view.setFitWidth(250);
+        Button rent_the_car2 = new Button("RENT THIS CAR");
+        rent_the_car2.setOnAction(event -> {
+            //Car ot_car = new Car("pinky",new Date(9/7/1996),9);
+            user.addCartoUser("pinky",new Date(9/7/1996),9);
+        });
 
 
 
@@ -46,6 +56,12 @@ public class CarRent {
         car3view.setY(25);
         car3view.setFitHeight(150);
         car3view.setFitWidth(250);
+        Button rent_the_car3 = new Button("RENT THIS CAR");
+        rent_the_car3.setOnAction(event -> {
+            //Car otp_car = new Car("funky",new Date(9/9/2000),9);
+            user.addCartoUser("funky",new Date(9/9/2000),9);
+        });
+
 
 
 

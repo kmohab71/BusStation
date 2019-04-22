@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MangerWindow {
@@ -25,9 +26,19 @@ public class MangerWindow {
     public void setInternal(Boolean internal) {
         isInternal = internal;
     }
+    private int vehical_type = 0;
+
+    public int getVehical_type() {
+        return vehical_type;
+    }
+
+    public void setVehical_type(int vehical_type) {
+        this.vehical_type = vehical_type;
+    }
 
     private   Boolean isInternal;
     private DatePicker datePickerM;
+    private LocalDate value;
     public TextField sourceInput, destinationInput, stopsInput,priceInput, DriverName,seatsAv;
     public void MangerWindowz(manger manger) {
         Stage window = new Stage();
@@ -74,6 +85,10 @@ public class MangerWindow {
         seatsAv.setPromptText("SEATS");
         seatsAv.setMinWidth(100);
         datePickerM = new DatePicker();
+        datePickerM.setOnAction(event -> {
+            value = datePickerM.getValue();
+            //System.out.println(value.getDayOfMonth());
+        });
 
         //Button
         Button addButton = new Button("Add");
@@ -102,11 +117,11 @@ public class MangerWindow {
         ToggleGroup newToggle22 = new ToggleGroup();
         RadioButton BUS = new RadioButton("BUS  ");
         BUS.setOnAction(e ->{
-
+        setVehical_type(1);
         });
         RadioButton MINI = new RadioButton("MINI BUS  ");
         MINI.setOnAction(e ->{
-
+        setVehical_type(2);
         });
         BUS.setToggleGroup(newToggle22);
         MINI.setToggleGroup(newToggle22);
@@ -121,9 +136,6 @@ public class MangerWindow {
         hBox22.setPadding(new Insets(10,10,10,10));
         hBox22.setSpacing(10);
         hBox22.getChildren().addAll(checkboxes,priceInput,DriverName,datePickerM,checkboxes22);
-
-
-
 
 
         table = new TableView<>();
@@ -141,7 +153,12 @@ public class MangerWindow {
 
     //Add button clicked
     public void addButtonClicked(manger manger){
-         manger.addTrip(sourceInput.getText(),destinationInput.getText(),getInternal(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",8,12,2019);
+        int spotsAv ;
+        if (getVehical_type()==1){
+            spotsAv=30;
+        }
+        else spotsAv=20;
+        manger.addTrip(sourceInput.getText(),destinationInput.getText(),getInternal(),false,getVehical_type(),spotsAv,Integer.parseInt(stopsInput.getText()), Integer.parseInt(priceInput.getText()),DriverName.getText(),value.getDayOfMonth(),value.getMonthValue(),value.getYear());
         table.getItems().add(new Product(sourceInput.getText(),destinationInput.getText(),Integer.parseInt(stopsInput.getText())));
         sourceInput.clear();
         destinationInput.clear();

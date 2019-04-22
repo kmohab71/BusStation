@@ -92,6 +92,9 @@ public class createContent {
         itemExit.setOnMouseClicked(e -> System.exit(0));
         createContent.MenuItem sumbit = new createContent.MenuItem("SUBMIT");
         createContent.MenuItem signup = new createContent.MenuItem("SIGN UP");
+        signup.setOnMouseClicked(event -> {
+
+        });
         createContent.MenuItem helpCenter = new createContent.MenuItem("HELP");
 
         // menu.setTranslateX(100);
