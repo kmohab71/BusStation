@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,7 +17,18 @@ import java.util.List;
 
 public class MangerWindow {
     private TableView<Product> table;
-    public TextField sourceInput, destinationInput, stopsInput;
+
+    public Boolean getInternal() {
+        return isInternal;
+    }
+
+    public void setInternal(Boolean internal) {
+        isInternal = internal;
+    }
+
+    private   Boolean isInternal;
+    private DatePicker datePickerM;
+    public TextField sourceInput, destinationInput, stopsInput,priceInput, DriverName,seatsAv;
     public void MangerWindowz(manger manger) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -54,6 +62,19 @@ public class MangerWindow {
         stopsInput = new TextField();
         stopsInput.setPromptText("STOPS");
 
+        priceInput = new TextField();
+        priceInput.setPromptText("PRICE");
+        priceInput.setMinWidth(100);
+
+        DriverName = new TextField();
+        DriverName.setPromptText("DRIVER");
+        DriverName.setMinWidth(100);
+
+        seatsAv = new TextField();
+        seatsAv.setPromptText("SEATS");
+        seatsAv.setMinWidth(100);
+        datePickerM = new DatePicker();
+
         //Button
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> addButtonClicked(manger));
@@ -65,17 +86,52 @@ public class MangerWindow {
             createContent lol = new createContent(window);
         });
 
+        ToggleGroup newToggle = new ToggleGroup();
+        RadioButton inter = new RadioButton("INTERNAL  ");
+        inter.setOnAction(e ->{
+            setInternal(true);
+        });
+        RadioButton external = new RadioButton("EXTERNAL  ");
+        external.setOnAction(e ->{
+            setInternal(false);
+        });
+        inter.setToggleGroup(newToggle);
+        external.setToggleGroup(newToggle);
+        HBox checkboxes = new HBox(inter,external);
+
+        ToggleGroup newToggle22 = new ToggleGroup();
+        RadioButton BUS = new RadioButton("BUS  ");
+        BUS.setOnAction(e ->{
+
+        });
+        RadioButton MINI = new RadioButton("MINI BUS  ");
+        MINI.setOnAction(e ->{
+
+        });
+        BUS.setToggleGroup(newToggle22);
+        MINI.setToggleGroup(newToggle22);
+        HBox checkboxes22 = new HBox(BUS,MINI);
+
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
         hBox.getChildren().addAll(sourceInput, destinationInput, stopsInput, addButton, deleteButton,out);
+
+        HBox hBox22 = new HBox();
+        hBox22.setPadding(new Insets(10,10,10,10));
+        hBox22.setSpacing(10);
+        hBox22.getChildren().addAll(checkboxes,priceInput,DriverName,datePickerM,checkboxes22);
+
+
+
+
 
         table = new TableView<>();
         table.setItems(getProduct(manger));
         table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(table, hBox);
+        vBox.getChildren().addAll(table,hBox, hBox22);
 
         Scene scene = new Scene(vBox);
 
@@ -85,7 +141,7 @@ public class MangerWindow {
 
     //Add button clicked
     public void addButtonClicked(manger manger){
-         manger.addTrip(sourceInput.getText(),destinationInput.getText(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",4,12,2019);
+         manger.addTrip(sourceInput.getText(),destinationInput.getText(),getInternal(),false,2,30,Integer.parseInt(stopsInput.getText()),40,"NOUR",8,12,2019);
         table.getItems().add(new Product(sourceInput.getText(),destinationInput.getText(),Integer.parseInt(stopsInput.getText())));
         sourceInput.clear();
         destinationInput.clear();

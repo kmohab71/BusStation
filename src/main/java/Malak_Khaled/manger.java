@@ -18,19 +18,27 @@ public class manger extends Employee {
         setPassword(Password);
     }
 
-    public Trip addTrip(String source, String des, boolean INTERNAL, int vehicleType, int NumPeopleLeft , int stopsNum, int price, String Drivername, int day, int month,int year)
+    public void addTrip(String source, String des, boolean INTERNAL,boolean twoWays, int vehicleType, int NumPeopleLeft , int stopsNum, int price, String Drivername, int day, int month,int year)
     {
-        List<Driver> driver = DB_config.datastore.find(Driver.class)
-                .filter("name =", Drivername)
-                .asList();
-        Assert.assertEquals(1, driver.size());
-        System.out.println(driver.get(0).getId());
-         final Trip newtrip = new Trip(source, des,INTERNAL, stopsNum,price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
-         System.out.println(newtrip.toString());
-         final Trip newtrip2 = new Trip(des,source,INTERNAL, stopsNum, price,vehicleType, NumPeopleLeft,driver.get(0).getId(),day,month,year);
-         DB_config.datastore.save(newtrip);
-         DB_config.datastore.save(newtrip2);
-         return newtrip;
+        if(twoWays) {
+            List<Driver> driver = DB_config.datastore.find(Driver.class)
+                    .filter("name =", Drivername)
+                    .asList();
+            Assert.assertEquals(1, driver.size());
+            final Trip newtrip = new Trip(source, des, INTERNAL, stopsNum, price, vehicleType, NumPeopleLeft, driver.get(0).getId(), day, month, year);
+            final Trip newtrip2 = new Trip(des, source, INTERNAL, stopsNum, price, vehicleType, NumPeopleLeft, driver.get(0).getId(), day, month, year);
+            DB_config.datastore.save(newtrip);
+            DB_config.datastore.save(newtrip2);
+        }
+        else
+        {
+            List<Driver> driver = DB_config.datastore.find(Driver.class)
+                    .filter("name =", Drivername)
+                    .asList();
+            Assert.assertEquals(1, driver.size());
+            final Trip newtrip = new Trip(source, des, INTERNAL, stopsNum, price, vehicleType, NumPeopleLeft, driver.get(0).getId(), day, month, year);
+            DB_config.datastore.save(newtrip);
+        }
     }
     public Driver addDriver(int salary,String name, String username, String password)
     {
