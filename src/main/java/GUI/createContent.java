@@ -244,7 +244,7 @@ public class createContent {
         });
     }
 
-    private void showAlert(javafx.scene.control.Alert.AlertType alertType, Window owner, String title, String message) {
+     private void showAlert(javafx.scene.control.Alert.AlertType alertType, Window owner, String title, String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -333,7 +333,37 @@ public class createContent {
                 createContent.MenuItem my_cars = new createContent.MenuItem("RENTED CARS");
                 my_cars.setOnMouseClicked(event -> {
                     refreshB(username,passwordField);
-                    System.out.println(user.getReservedCars().get(0).getName());
+                    Stage carWindow = new Stage();
+                    carWindow.initModality(Modality.APPLICATION_MODAL);
+                    carWindow.setTitle("RENTED  CARS");
+                    VBox lolzz = new VBox();
+                    User me = new User();
+                    //int siz = me.getReservedCars().size();
+
+                        lolzz.getChildren().addAll(new Label(user.getReservedCars().get(0).getName()),
+                                new ImageView(user.getReservedCars().get(0).getPicURL()),
+                                        new Label("Number of Days" + user.getReservedCars().get(0).getNumOfDays()),
+                                        new Label("FROM" + user.getReservedCars().get(0).getDate()));
+
+                    VBox lolzz2 = new VBox();
+
+                    //int siz = me.getReservedCars().size();
+
+                    lolzz2.getChildren().addAll(new Label(user.getReservedCars().get(1).getName()),
+                            new ImageView(user.getReservedCars().get(1).getPicURL()),
+                            new Label("Number of Days" + user.getReservedCars().get(1).getNumOfDays()),
+                            new Label("FROM" + user.getReservedCars().get(1).getDate()));
+
+
+
+
+                    Scene carScene = new Scene(new HBox(lolzz,lolzz2));
+                    carWindow.setScene(carScene);
+                    carWindow.show();
+
+
+                    //Creator.carCreat();
+                   // System.out.println(user.getReservedCars().get(0).getName());
                 });
                 rent_a_car.setOnMouseClicked(event -> {
 

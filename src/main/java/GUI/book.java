@@ -11,14 +11,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
-import java.sql.Date;
 import java.util.List;
 
 public class book {
     private   Boolean isInternal;
     private   Boolean isOneWay;
     private   Boolean isEcon;
+    private String s= "Choose destination";
 
     public Boolean getInternal() {
         return isInternal;
@@ -99,23 +100,32 @@ public class book {
             choiceBox2.getItems().add(tripList.get(i).getDes());
         }
 
-        Button cancel = new Button("CANCEL");
-        cancel.setOnAction(e -> {
-            /*window.close();
-            userWindow nextt = new userWindow();
-            nextt.userWindow(user);
 
-             */
+        choiceBox.setOnAction(e ->{
+            s = choiceBox.getValue();
+            choiceBox2.getItems().clear();
+            choiceBox2.getItems().add("DESTINATION");
+            choiceBox2.setValue("DESTINATION");
+
+            Query<Trip> tripsQueryList232 =  DB_config.datastore.createQuery(Trip.class).field("source").equal(s);
+            List<Trip> tr = tripsQueryList232.asList();
+            for (int j =0 ; j< tr.size();j++) {
+
+                choiceBox2.getItems().add(tr.get(j).getDes());
+
+            }
         });
 
-        DatePicker datePicker = new DatePicker();
+
+
+
 
 
 
         Button submit = new Button("SUBMIT");
         submit.setOnAction((e) -> {
             //window.close();
-            Date value = Date.valueOf(datePicker.getValue());
+            //Date value = Date.valueOf(datePicker.getValue());
 
 
             String source =choiceBox.getValue();
@@ -133,22 +143,47 @@ public class book {
             {
                 String me2 =  x.get(i).getSource();
                 String me1 =  x.get(i).getDes();
-                int me3 = x.get(i).getStopsNum();
-                String temp = "FROM:  "+me2+"  TO:  "+me1+" "+ me3;
+                int me3 = x.get(i).getDate().getDay()+1;
+                int me4 = x.get(i).getDate().getMonth();
+                int me5 = x.get(i).getDate().getYear();
+                int numberP = x.get(i).getNumPeopleLeft();
+                int price = x.get(i).getPrice();
+                float Prices; int twoways=1;
+                if(isOneWay) twoways=0;
+                if (isEcon==false && !getInternal()) {
+                    Prices= (float) (price*2-(twoways*price*0.2));
+
+                }else if(isEcon==true  && !getInternal()){
+                    Prices= (float) (price*1.75-(twoways*price*0.2));
+
+                }else if(isEcon==false  && getInternal()){
+
+                    Prices= (float) (price*1.5-(twoways*price*0.2));
+                }else{
+                    Prices= (float) (price*1.25-(twoways*price*0.4));
+                }
+                String temp = "FROM:  "+me2+"  TO:  "+me1+" "+ me3+"/"+me4+"/"+me5 +" PRICE:"+Prices+"  "+numberP;
                 listView.getItems().add(temp);
             }
 
             Button button = new Button("BOOK THIS TRIP");
 
             button.setOnAction(event -> {
-
+                Alert alert = new Alert();
                 ObservableList selectedIndices = listView.getSelectionModel().getSelectedIndices();
                 for(Object o : selectedIndices){
 
-                    int no = x.get((Integer) o).getStopsNum();
-                    System.out.println(no);
+                    int no = x.get((Integer) o).getNumPeopleLeft();
+                    if (no==0){
 
-                    user.addTriptoUser(x.get(0),!getOneWay(),!getEcon());
+                        alert.display( "Error!", "NO AVAILABLE SEATS");
+                    }
+                    else
+                    {
+                        user.addTriptoUser(x.get(0),!getOneWay(),!getEcon());
+                        alert.display(  "DONE!", "SEAT RESERVED");
+                    }
+
 
                 }
 
@@ -171,12 +206,20 @@ public class book {
 
 
         VBox first0 = new VBox();
-        first0.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,datePicker,submit,cancel);
+        first0.getChildren().addAll(checkboxes2,checkboxes,checkboxes3,choiceBox,choiceBox2,submit);
         Scene bookpage = new Scene(first0, 500.0D, 200.0D, Color.AQUAMARINE);
         window.setTitle("BUS STATION");
         window.setScene(bookpage);
         window.show();
 
 
+    }
+    private void showAlert(javafx.scene.control.Alert.AlertType alertType, Window owner, String title, String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }

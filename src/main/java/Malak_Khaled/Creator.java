@@ -1,5 +1,7 @@
 package Malak_Khaled;
 
+import java.util.Date;
+
 public class Creator {
     public Creator() {
     }
@@ -16,4 +18,11 @@ public class Creator {
         DB_config.datastore.save(elmer);
         return elmer;
     }
+    public static Car carCreat()
+    {
+        final Car lol = new Car( "malak",  new Date(2000,1,4),  5,  "www.google.com");
+        DB_config.datastore.save(lol);
+        return lol;
+    }
+
 }
