@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="5 am" />
+        <module name="finalBus 2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="5 am" target="9" />
+      <module name="finalBus 2" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
