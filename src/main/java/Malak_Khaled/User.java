@@ -53,35 +53,35 @@ public class User extends Person{
     public void addTriptoUser(Trip trip, boolean twoWay, boolean FirstClass)
     {
         if(trip.getNumPeopleLeft()>0){
-        if(twoWay==true)
-        {
-            Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
-            Query<Trip> TripQuery =  DB_config.datastore.createQuery(Trip.class).field("source").equal(trip.getDes());
-            List<Trip> TripList = TripQuery.field("des").equal(trip.getSource()).asList();
-            if (!TripList.isEmpty())
+            if(twoWay==true)
             {
-                Trip trip2 = TripList.get(0);
-                ReservedTikets reserve1=new ReservedTikets(trip2, twoWay,  FirstClass);
-                reserve1.calculatePrice();
-                UpdateOperations<User> ops1 =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve1);
-                DB_config.datastore.update(updateQuery,ops1);
+                Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
+                Query<Trip> TripQuery =  DB_config.datastore.createQuery(Trip.class).field("source").equal(trip.getDes());
+                List<Trip> TripList = TripQuery.field("des").equal(trip.getSource()).asList();
+                if (!TripList.isEmpty())
+                {
+                    Trip trip2 = TripList.get(0);
+                    ReservedTikets reserve1=new ReservedTikets(trip2, twoWay,  FirstClass);
+                    reserve1.calculatePrice();
+                    UpdateOperations<User> ops1 =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve1);
+                    DB_config.datastore.update(updateQuery,ops1);
+
+                }
+
+                ReservedTikets reserve=new ReservedTikets(trip, twoWay,  FirstClass);
+                reserve.calculatePrice();
+                UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
+                DB_config.datastore.update(updateQuery,ops);
 
             }
-
-            ReservedTikets reserve=new ReservedTikets(trip, twoWay,  FirstClass);
-            reserve.calculatePrice();
-            UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
-            DB_config.datastore.update(updateQuery,ops);
-
-        }
-        else
-        {
-            Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
-            ReservedTikets reserve=new ReservedTikets(trip, twoWay,  FirstClass);
-            reserve.calculatePrice();
-            UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
-            DB_config.datastore.update(updateQuery,ops);
-        }
+            else
+            {
+                Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
+                ReservedTikets reserve=new ReservedTikets(trip, twoWay,  FirstClass);
+                reserve.calculatePrice();
+                UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reserved",reserve);
+                DB_config.datastore.update(updateQuery,ops);
+            }
             trip.pushToReservers(this);
             trip.decrementNumPeopleLeft();
         }else{}

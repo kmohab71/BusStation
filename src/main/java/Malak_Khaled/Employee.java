@@ -29,6 +29,6 @@ public abstract class Employee extends Person {
         this.salary = salary;
     }
 
-    }
+}
 
 

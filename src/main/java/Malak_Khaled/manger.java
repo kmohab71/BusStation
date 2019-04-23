@@ -8,7 +8,7 @@ import java.util.List;
 public class manger extends Employee {
 
     public manger() {
-   }
+    }
 
     public manger(String Name, int salary, String Username, String Password) {
 

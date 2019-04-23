@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class Car implements Vehicle {
 
-        private String name;
-        private String picURL;
+    private String name;
+    private String picURL;
 
     public String getPicURL() {
         return picURL;
@@ -17,8 +17,8 @@ public class Car implements Vehicle {
     }
 
     private Date date;
-        private int numOfDays;
-        private double price;
+    private int numOfDays;
+    private double price;
     public Car(){}
     public Car(String name, Date date, int numOfDays,String picURL) {
         this.name = name;
@@ -54,7 +54,7 @@ public class Car implements Vehicle {
     public void calculatePrice(){
 
         price=50*numOfDays;
-        }
+    }
 
 }
 

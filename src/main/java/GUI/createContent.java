@@ -406,7 +406,7 @@ public class createContent {
             else
                 showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, primaryStage, "ERROR","YOU ARE NOT A REGISTERED MANGER");
 
-            }
+        }
     }
 
     private void refreshB(TextField username, PasswordField passwordField) {

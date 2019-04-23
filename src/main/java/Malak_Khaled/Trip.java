@@ -107,7 +107,7 @@ public class Trip {
         this.INTERNAL = INTERNAL;
     }
     public boolean getINTERNAL() {
-       return this.INTERNAL;
+        return this.INTERNAL;
     }
     public int getStopsNum() {
         return StopsNum;

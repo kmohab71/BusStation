@@ -44,20 +44,20 @@ public class DriverWindow {
 
         for (int i = 0; i< s.size(); i++)
             tableView.getItems().add(new User(s.get(i).getSource(),s.get(i).getDes(),s.get(i).getDate().toString()));
-            //tableView.getItems().add(new User(user.getReserved().get((Integer) i).getTrip().getSource(), user.getReserved().get((Integer) i).getTrip().getDes(),"99"));
+        //tableView.getItems().add(new User(user.getReserved().get((Integer) i).getTrip().getSource(), user.getReserved().get((Integer) i).getTrip().getDes(),"99"));
 
 
 
-            Label driverName = new Label("NAME: " + driver.getName());
-            Label driverWage = new Label("WAGE: " + driver.getSalary());
-            Label driverDOB = new Label("");
-            VBox driverInfo = new VBox();
-            driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, tableView);
+        Label driverName = new Label("NAME: " + driver.getName());
+        Label driverWage = new Label("WAGE: " + driver.getSalary());
+        Label driverDOB = new Label("");
+        VBox driverInfo = new VBox();
+        driverInfo.getChildren().addAll(driverName, driverWage, driverDOB, tableView);
 
-            Scene no = new Scene(driverInfo,500,700, Color.CHOCOLATE);
-            window.setScene(no);
-            window.show();
-        }
-
-
+        Scene no = new Scene(driverInfo,500,700, Color.CHOCOLATE);
+        window.setScene(no);
+        window.show();
     }
+
+
+}

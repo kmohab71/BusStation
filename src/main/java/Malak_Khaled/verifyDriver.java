@@ -18,7 +18,7 @@ public class verifyDriver {
             Driver driver = (Driver) query.asList().get(0);
             if (driver.getPassword().equals(password))
                 return driver;
-            }
+        }
         return null;
     }
 

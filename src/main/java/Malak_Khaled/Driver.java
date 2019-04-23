@@ -44,11 +44,11 @@ public class Driver extends Employee {
     }
     public List<Trip> ViewTripDriver()
     {
-           List<Trip> seq = datastore.find(Trip.class, "driver",getId()).asList();
-           for (int i=0;i<seq.size();i++)
-                System.out.println(seq.get(i).getSource()+' '+seq.get(i).getDes());
-            return  seq;
-        }
+        List<Trip> seq = datastore.find(Trip.class, "driver",getId()).asList();
+        for (int i=0;i<seq.size();i++)
+            System.out.println(seq.get(i).getSource()+' '+seq.get(i).getDes());
+        return  seq;
+    }
 }
 
 

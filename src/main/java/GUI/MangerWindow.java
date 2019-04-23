@@ -117,11 +117,11 @@ public class MangerWindow {
         ToggleGroup newToggle22 = new ToggleGroup();
         RadioButton BUS = new RadioButton("BUS  ");
         BUS.setOnAction(e ->{
-        setVehical_type(1);
+            setVehical_type(1);
         });
         RadioButton MINI = new RadioButton("MINI BUS  ");
         MINI.setOnAction(e ->{
-        setVehical_type(2);
+            setVehical_type(2);
         });
         BUS.setToggleGroup(newToggle22);
         MINI.setToggleGroup(newToggle22);
