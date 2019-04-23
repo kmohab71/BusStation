@@ -15,13 +15,13 @@ public class User extends Person{
     private ArrayList<ReservedTikets> reserved= new ArrayList<ReservedTikets>();
     @Id
     private static ObjectId id;
-    private ArrayList<Vehicle> reservedCars= new ArrayList<>();
+    private ArrayList<Car> reservedCars= new ArrayList<>();
 
-    public ArrayList<Vehicle> getReservedCars() {
+    public ArrayList<Car> getReservedCars() {
         return reservedCars;
     }
 
-    public void setReservedCars(ArrayList<Vehicle> reservedCars) {
+    public void setReservedCars(ArrayList<Car> reservedCars) {
         this.reservedCars = reservedCars;
     }
 
@@ -88,10 +88,10 @@ public class User extends Person{
     }
 
 
-    public void addCartoUser(String name, Date date, int numOfDays)
+    public void addCartoUser(String name, Date date, int numOfDays,String picURL)
     {
         Query<User> updateQuery =  DB_config.datastore.createQuery(User.class).field("Username").equal(getUsername());
-        Car reserveCar=new Car( name, date, numOfDays);
+        Car reserveCar=new Car( name, date, numOfDays,picURL);
         reserveCar.calculatePrice();
         UpdateOperations<User> ops =  DB_config.datastore.createUpdateOperations(User.class).addToSet("reservedCars",reserveCar);
         DB_config.datastore.update(updateQuery,ops);

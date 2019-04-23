@@ -33,7 +33,7 @@ public class CarRent {
         Button rent_the_car = new Button("RENT THIS CAR");
         rent_the_car.setOnAction(event -> {
             //Car one_car = new Car("pooh",new Date(12/1/1999),5);
-            user.addCartoUser("pooh",new Date(12/1/1999),5);
+            user.addCartoUser("pooh",new Date(12/1/1999),5,car);
         });
 
 
@@ -46,7 +46,7 @@ public class CarRent {
         Button rent_the_car2 = new Button("RENT THIS CAR");
         rent_the_car2.setOnAction(event -> {
             //Car ot_car = new Car("pinky",new Date(9/7/1996),9);
-            user.addCartoUser("pinky",new Date(9/7/1996),9);
+            user.addCartoUser("pinky",new Date(9/7/1996),9,car2);
         });
 
 
@@ -59,7 +59,7 @@ public class CarRent {
         Button rent_the_car3 = new Button("RENT THIS CAR");
         rent_the_car3.setOnAction(event -> {
             //Car otp_car = new Car("funky",new Date(9/9/2000),9);
-            user.addCartoUser("funky",new Date(9/9/2000),9);
+            user.addCartoUser("funky",new Date(9/9/2000),9,car3);
         });
 
 

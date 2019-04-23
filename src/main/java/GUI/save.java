@@ -1,18 +1,17 @@
-package GUI;
+/* package GUI;
 
 import Malak_Khaled.*;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -24,7 +23,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class createContent {
     private  final String APPLICATION_ICON2 ="https://www.malaysia-expressbus.com/wp-content/uploads/2013/09/aa.png";
@@ -143,139 +141,53 @@ public class createContent {
         primaryStage.show();
     }
 
-
-
-    private GridPane createRegistrationFormPane() {
-        // Instantiate a new Grid Pane
-        GridPane gridPane = new GridPane();
-
-        // Position the pane at the center of the screen, both vertically and horizontally
-        gridPane.setAlignment(Pos.CENTER);
-
-        // Set a padding of 20px on each side
-        gridPane.setPadding(new Insets(40, 40, 40, 40));
-
-        // Set the horizontal gap between columns
-        gridPane.setHgap(10);
-
-        // Set the vertical gap between rows
-        gridPane.setVgap(10);
-
-        // Add Column Constraints
-
-        // columnOneConstraints will be applied to all the nodes placed in column one.
-        ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
-        columnOneConstraints.setHalignment(HPos.RIGHT);
-
-        // columnTwoConstraints will be applied to all the nodes placed in column two.
-        ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
-        columnTwoConstrains.setHgrow(Priority.ALWAYS);
-
-        gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
-
-        return gridPane;
-    }
-
-    private void addUIControls(GridPane gridPane) {
-        // Add Header
-        Label headerLabel = new Label("Registration Form");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        gridPane.add(headerLabel, 0,0,2,1);
-        GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
-
-        // Add Name Label
-        Label nameLabel0 = new Label("Name : ");
-        gridPane.add(nameLabel0, 0,1);
-
-        // Add Name Text Field
-        TextField nameField0 = new TextField();
-        nameField0.setPrefHeight(40);
-        gridPane.add(nameField0, 1,1);
-
-
-        // Add Email Label
-        Label usernameLabel0 = new Label("Username : ");
-        gridPane.add(usernameLabel0, 0, 2);
-
-        // Add Email Text Field
-        TextField usernameField0 = new TextField();
-        usernameField0.setPrefHeight(40);
-        gridPane.add(usernameField0, 1, 2);
-
-        // Add Password Label
-        Label passwordLabel0 = new Label("Password : ");
-        gridPane.add(passwordLabel0, 0, 3);
-
-        // Add Password Field
-        PasswordField passwordField0 = new PasswordField();
-        passwordField0.setPrefHeight(40);
-        gridPane.add(passwordField0, 1, 3);
-
-        // Add Submit Button
-        Button submitButton = new Button("Submit");
-        submitButton.setPrefHeight(40);
-        submitButton.setDefaultButton(true);
-        submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
-        GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
-
-        submitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(nameField0.getText().isEmpty()) {
-                    showAlert(javafx.scene.control.Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error!", "Please enter your name");
-                    return;
-                }
-                if(usernameField0.getText().isEmpty()) {
-                    showAlert(javafx.scene.control.Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error!", "Please enter your username");
-                    return;
-                }
-                if(passwordField0.getText().isEmpty()) {
-                    showAlert(javafx.scene.control.Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error!", "Please enter a password");
-                    return;
-                }
-
-                showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField0.getText());
-                Creator upup = new Creator();
-                User user1= upup.createUser(nameField0.getText(),usernameField0.getText(),passwordField0.getText());
-            }
-        });
-    }
-
-    private void showAlert(javafx.scene.control.Alert.AlertType alertType, Window owner, String title, String message) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
-
     private void ix() {
 
         Stage sign_up = new Stage();
         sign_up.initModality(Modality.APPLICATION_MODAL);
         sign_up.setTitle("CREATE A NEW ACCOUNT");
         sign_up.setMinWidth(250);
+        TextField username22 = new TextField();
+        username22.setMaxSize(0, 0);
+        username22.setMinSize(0, 0);
 
-        GridPane gridPane = createRegistrationFormPane();
-        addUIControls(gridPane);
-        Scene scene00 = new Scene(gridPane, 800, 500);
-        sign_up.setScene(scene00);
+        Label label = new Label("NAME:           ");
+        TextField nameT = new TextField();
+        nameT.setPromptText("NAME");
+        HBox namezz = new HBox(label,nameT);
 
-        sign_up.show();
+        Label userNamzz = new Label("USERNAME:  ");
+        TextField USERnameT = new TextField();
+        USERnameT.setPromptText("USERNAME");
+        HBox USERnamezz = new HBox(userNamzz,USERnameT);
 
+        Label label44 = new Label("PASSWORD:  ");
+        PasswordField nameT44 = new PasswordField();
+        nameT44.setPromptText("PASSWORD");
+        HBox namezz44 = new HBox(label44,nameT44);
+
+        Button submitt = new Button("SUBMIT");
+        submitt.setOnAction(event -> {
+            Creator upup = new Creator();
+            User user1= upup.createUser(nameT.getText(),USERnameT.getText(),nameT44.getText());
+            sign_up.close();});
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(username22,namezz,USERnamezz,namezz44,submitt);
+        //layout.setAlignment(Pos.CENTER);
+
+
+
+
+        Scene scene55 = new Scene(layout,400,150, Color.HOTPINK);
+        sign_up.setScene(scene55);
+        sign_up.showAndWait();
     }
-
-
 
     private void ifx(TextField username, PasswordField passwordField){
 
         if (choice==0){
-            showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, primaryStage, "ERROR","PLEASE SELECT ONE OF THE THREE RADIO BUTTONS");
-
+            Alert.display("ERROR","PLEASE SELECT ONE OF THE THREE RADIO BUTTONS");
         }
         if(choice==1){
 
@@ -330,18 +242,12 @@ public class createContent {
                 createContent.MenuItem logout = new createContent.MenuItem("LOGOUT");
                 createContent.MenuItem refresh = new createContent.MenuItem("REFRESH");
                 createContent.MenuItem rent_a_car = new createContent.MenuItem("RENT A CAR");
-                createContent.MenuItem my_cars = new createContent.MenuItem("RENTED CARS");
-                my_cars.setOnMouseClicked(event -> {
-                    refreshB(username,passwordField);
-                    System.out.println(user.getReservedCars().get(0).getName());
-                });
                 rent_a_car.setOnMouseClicked(event -> {
-
                     CarRent renting = new CarRent();
                     renting.rentingCars(user);
                 });
                 refresh.setOnMouseClicked(event -> {
-                    refreshB(username,passwordField);
+                    setUser(verifyUser.verifyUser(username.getText(),passwordField.getText()));
                     tableView.getItems().clear();
                     for (int i = 0; i< getUser().getReserved().size(); i++)
                         tableView.getItems().add(new User(getUser().getReserved().get((Integer) i).getTrip().getSource(), getUser().getReserved().get((Integer) i).getTrip().getDes(),getUser().getReserved().get((Integer) i).getTrip().getDate().toString()));
@@ -358,7 +264,6 @@ public class createContent {
                         booktrip,
                         logout,
                         rent_a_car,
-                        my_cars,
                         refresh);
 
 
@@ -382,7 +287,7 @@ public class createContent {
                 primaryStage.setScene(scene2);
             }
             else
-                showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, primaryStage, "ERROR","YOU ARE NOT A REGISTERED USER");
+                Alert.display("ERROR","YOU ARE NOT A REGISTERED USER");
 
         }
         if(choice==2){
@@ -394,9 +299,7 @@ public class createContent {
                 next2.DriverWindow(driver);
             }
             else
-                showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, primaryStage, "ERROR","YOU ARE NOT A REGISTERED DRIVER");
-
-        }
+                Alert.display("ERROR","YOU ARE NOT A REGISTERED DRIVER");}
         if(choice==3){manger manger =verifyManger.verifyManger(username.getText(),passwordField.getText());
             if (manger!=null){
                 primaryStage.close();
@@ -404,15 +307,9 @@ public class createContent {
                 next3.MangerWindowz(manger);
             }
             else
-                showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, primaryStage, "ERROR","YOU ARE NOT A REGISTERED MANGER");
-
-            }
+                Alert.display("ERROR","YOU ARE NOT A REGISTERED MANGER");}
     }
 
-    private void refreshB(TextField username, PasswordField passwordField) {
-        setUser(verifyUser.verifyUser(username.getText(),passwordField.getText()));
-
-    }
 
 
     private static class MenuBox extends VBox {
@@ -488,3 +385,6 @@ public class createContent {
         }
     }
 }
+
+
+ */

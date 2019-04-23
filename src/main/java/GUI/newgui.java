@@ -81,20 +81,20 @@ public class newgui extends Application {
                 ObservableList<String> availableFriends =
                         FXCollections.observableArrayList(
 
-                                "User info", "Driver info", "Trip details", "Database", "Database",
-                                "Database", "Database", "Database", "Database",
+                                "User info", "Driver info", "Trip details", "Vehicles", "Images",
+                                "Images", "Images", "Database", "Database",
                                 "Database", "Database", "Database", "Database"
                         );
 
                 updateMessage("LOADING . . .");
                 for (int i = 0; i < availableFriends.size(); i++) {
-                    Thread.sleep(400);
+                    Thread.sleep(40);
                     updateProgress(i + 1, availableFriends.size());
                     String nextFriend = availableFriends.get(i);
                     foundFriends.add(nextFriend);
                     updateMessage("LOADING . . .  " + nextFriend);
                 }
-                Thread.sleep(400);
+                Thread.sleep(40);
                 updateMessage("DONE");
 
                 return foundFriends;

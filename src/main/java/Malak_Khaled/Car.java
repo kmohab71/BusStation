@@ -1,18 +1,30 @@
 package Malak_Khaled;
 
+
 import java.util.Date;
 
 public class Car implements Vehicle {
 
         private String name;
-        private Date date;
+        private String picURL;
+
+    public String getPicURL() {
+        return picURL;
+    }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
+    }
+
+    private Date date;
         private int numOfDays;
         private double price;
-
-    public Car(String name, Date date, int numOfDays) {
+    public Car(){}
+    public Car(String name, Date date, int numOfDays,String picURL) {
         this.name = name;
         this.date = date;
         this.numOfDays = numOfDays;
+        this.picURL=picURL;
     }
 
     public Date getDate() {
@@ -45,3 +57,5 @@ public class Car implements Vehicle {
         }
 
 }
+
+
